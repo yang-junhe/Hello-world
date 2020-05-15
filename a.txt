@@ -1,4 +1,0 @@
-test rm command
-
-
-add staged
