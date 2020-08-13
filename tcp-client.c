@@ -10,6 +10,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#define u32 long
+
 #define SERVER_IP	"192.168.1.133"
 #define SERVER_PORT	((uint16_t)7007)
 #define BUFF_SIZE	(1024 * 6)
