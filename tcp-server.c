@@ -24,6 +24,7 @@ void zombie_cleaning(int signo)
 
 int tcp_echo(int client_fd)
 {
+    long int loop = 100;
     char				buff[BUFF_SIZE]	= {0};
     ssize_t				len				= 0;
 
@@ -33,6 +34,7 @@ int tcp_echo(int client_fd)
     }
 
     (void)write(client_fd, buff, (size_t)len);
+    while(loop--);
 
     return EXIT_SUCCESS;
  err:
@@ -41,15 +43,18 @@ int tcp_echo(int client_fd)
 
 int main(void)
 {
+    int waittime;
     int server_sock, conn_sock;
     struct sockaddr_in server_addr, client_addr;
     socklen_t	sock_len	= sizeof(client_addr);
     pid_t	chld_pid;
     struct sigaction clean_zombie_act;
 
+
     server_sock	= socket(AF_INET, SOCK_STREAM, 0);
     if (server_sock < 0) {
         perror("socket(2) error");
+        waittime++;
         goto create_err;
     }
 
